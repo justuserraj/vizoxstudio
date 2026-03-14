@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Serif_Display, Inter } from "next/font/google";
 import "./globals.css";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const dmSerifDisplay = DM_Serif_Display({
   variable: "--font-dm-serif",
@@ -29,6 +30,7 @@ export default function RootLayout({
         className={`${inter.variable} ${dmSerifDisplay.variable} antialiased min-h-screen flex flex-col`}
       >
         {children}
+        <WhatsAppButton />
       </body>
     </html>
   );
