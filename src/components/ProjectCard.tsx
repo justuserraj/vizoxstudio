@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Info, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { ExternalLink, Info, X, ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export interface CaseStudy {
@@ -14,6 +15,7 @@ export interface CaseStudy {
 }
 
 export interface Project {
+  slug: string;
   title: string;
   category: string;
   image: string;
@@ -141,7 +143,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl bg-surface border border-border shadow-2xl no-scrollbar"
+              className="relative w-full max-w-5xl lg:h-[580px] h-auto overflow-hidden rounded-3xl bg-surface border border-border shadow-2xl"
             >
               {/* Close Button */}
               <button 
@@ -151,9 +153,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 <X className="w-6 h-6" />
               </button>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2">
+              <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
                 {/* Gallery Section */}
-                <div className="relative bg-black aspect-video lg:aspect-auto min-h-[400px]">
+                <div className="relative bg-black aspect-video lg:aspect-auto h-[300px] lg:h-full">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <AnimatePresence mode="wait">
                       <motion.div
@@ -204,54 +206,61 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 </div>
 
                 {/* Content Section */}
-                <div className="p-8 md:p-12 overflow-y-auto">
-                  <div className="mb-8">
+                <div className="p-8 lg:p-12 flex flex-col justify-center">
+                  <div className="mb-6">
                     <span className="text-primary font-semibold uppercase tracking-wider text-sm mb-2 block">{project.category}</span>
-                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-6 leading-tight">{project.title}</h2>
+                    <h2 className="text-2xl md:text-3xl font-serif font-bold text-white mb-4 leading-tight">{project.title}</h2>
                   </div>
 
-                  <div className="space-y-8">
+                  <div className="space-y-6">
                     <section>
-                      <h3 className="text-lg font-bold text-white mb-3 flex items-center">
-                        <span className="w-8 h-px bg-primary mr-3" />
+                      <h3 className="text-base font-bold text-white mb-2 flex items-center">
+                        <span className="w-6 h-px bg-primary mr-3" />
                         Project Overview
                       </h3>
-                      <p className="text-muted-foreground leading-relaxed">
+                      <p className="text-muted-foreground text-sm line-clamp-1">
                         {project.caseStudy.overview}
                       </p>
                     </section>
 
                     <section>
-                      <h3 className="text-lg font-bold text-white mb-3 flex items-center">
-                        <span className="w-8 h-px bg-primary mr-3" />
+                      <h3 className="text-base font-bold text-white mb-2 flex items-center">
+                        <span className="w-6 h-px bg-primary mr-3" />
                         Design Approach
                       </h3>
-                      <p className="text-muted-foreground leading-relaxed">
+                      <p className="text-muted-foreground text-sm line-clamp-1">
                         {project.caseStudy.designApproach}
                       </p>
                     </section>
 
                     <section>
-                      <h3 className="text-lg font-bold text-white mb-3 flex items-center">
+                      <h3 className="text-base font-bold text-white mb-2 flex items-center">
                         <span className="w-8 h-px bg-primary mr-3" />
                         Features Implemented
                       </h3>
-                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {project.caseStudy.features.map((feature, i) => (
-                          <li key={i} className="flex items-start text-muted-foreground text-sm">
-                            <span className="mr-2 text-primary text-lg">✓</span>
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
+                      <p className="text-muted-foreground text-sm line-clamp-1">
+                        {project.caseStudy.features.join(", ")}
+                      </p>
                     </section>
 
-                    <div className="pt-8 border-t border-border mt-10">
-                      <Button size="lg" className="w-full sm:w-auto h-14 px-10 text-lg group" asChild>
+                    <div className="pt-6 border-t border-border mt-6 flex flex-col sm:flex-row gap-3">
+                      <Button size="lg" className="w-full sm:w-auto h-12 px-6 text-sm group" asChild>
                         <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                          View Live Project
-                          <ExternalLink className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                          Live Site
+                          <ExternalLink className="ml-2 w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                         </a>
+                      </Button>
+                      <Button
+                        size="lg"
+                        variant="outline"
+                        className="w-full sm:w-auto h-12 px-6 text-sm group border-primary/40 text-primary hover:bg-primary hover:text-white transition-all"
+                        asChild
+                        onClick={() => setIsModalOpen(false)}
+                      >
+                        <Link href={`/case-study/${project.slug}`}>
+                          <BookOpen className="mr-2 w-4 h-4" />
+                          View Full Case Study
+                        </Link>
                       </Button>
                     </div>
                   </div>

@@ -4,11 +4,14 @@ import { Button } from "./ui/button";
 const FOOTER_LINKS = [
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
-  { name: "Portfolio", href: "/portfolio" },
-  { name: "Work", href: "/work" },
+  { name: "Our Work", href: "/portfolio" },
   { name: "Contact", href: "/contact" },
+];
+
+const LEGAL_LINKS = [
   { name: "Privacy Policy", href: "/privacy-policy" },
   { name: "Terms of Service", href: "/terms-of-service" },
+  { name: "Cookies Policy", href: "/cookies-policy" },
 ];
 
 export function Footer() {
@@ -33,7 +36,7 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-white mb-6 uppercase tracking-wider text-sm">Links</h3>
             <ul className="space-y-4">
-              {FOOTER_LINKS.slice(0, 5).map((link) => (
+              {FOOTER_LINKS.map((link) => (
                 <li key={link.name}>
                   <Link href={link.href} className="text-muted-foreground hover:text-primary transition-colors text-sm">
                     {link.name}
@@ -46,7 +49,7 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-white mb-6 uppercase tracking-wider text-sm">Legal</h3>
             <ul className="space-y-4 mb-8">
-              {FOOTER_LINKS.slice(5).map((link) => (
+              {LEGAL_LINKS.map((link) => (
                 <li key={link.name}>
                   <Link href={link.href} className="text-muted-foreground hover:text-primary transition-colors text-sm">
                     {link.name}

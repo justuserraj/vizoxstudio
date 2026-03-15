@@ -81,7 +81,7 @@ export default function Home() {
 
               <motion.div variants={fadeIn} className="pt-8">
                 <Button size="lg" className="text-base h-14 px-8" asChild>
-                  <Link href="/work">View Our Work <ArrowRight className="ml-2 w-5 h-5" /></Link>
+                  <Link href="/portfolio">View Our Work <ArrowRight className="ml-2 w-5 h-5" /></Link>
                 </Button>
               </motion.div>
             </motion.div>
