@@ -260,4 +260,217 @@ export const PORTFOLIO_ITEMS: Project[] = [
       ]
     }
   },
+  {
+    slug: "growth-analytics-campaign",
+    title: "Growth Analytics Campaign",
+    category: "Digital Marketing",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000",
+    description: "A comprehensive digital marketing campaign for an e-commerce brand that increased conversion rates by 45% through targeted SEO and data-driven ad strategies.",
+    liveUrl: "#",
+    alt: "Growth Analytics dashboard and marketing data",
+    techStack: ["SEO", "Google Analytics", "Paid Ads", "Content Strategy"],
+    caseStudy: {
+      overview: "To scale an emerging e-commerce brand by identifying high-value customer segments and optimizing all digital touchpoints for maximum conversion.",
+      designApproach: "We implemented a data-first approach, using heatmaps and user journey mapping to identify friction points in the sales funnel before launching creative campaigns.",
+      features: ["Conversion rate optimization", "Audience segmentation", "Multivariate A/B testing", "Automated marketing reports"],
+      screenshots: [
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000",
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000"
+      ]
+    },
+    fullCaseStudy: {
+      fullOverview: "A rapidly growing e-commerce brand in the luxury lifestyle space partnered with Vizox Studio to solve a critical challenge: high traffic but stagnating conversion rates. They had invested heavily in social media ads but weren't seeing the ROI needed to sustain growth. Our mission was to conduct a full audit of their digital ecosystem, rebuild their marketing strategy from the ground up, and implement a scalable system for customer acquisition and retention.",
+      fullDesignApproach: "Our strategy moved away from 'spray and pray' advertising. We started by deep-diving into their Google Analytics and Shopify data to build detailed customer personas. We identified that while their creative was strong, their landing pages lacked a clear information hierarchy and their checkout process had too many steps. We redesigned key conversion pages with a focus on trust signals, clear value propositions, and reduced friction. This was supported by a refined SEO strategy targeting high-intent long-tail keywords.",
+      fullFeatures: [
+        {
+          title: "Funnel Optimization",
+          description: "Redesign of high-traffic landing pages based on user behavior data, resulting in a cleaner path to purchase and reduced bounce rates."
+        },
+        {
+          title: "Precision Audience Targeting",
+          description: "Implementation of custom cohorts and lookalike audiences on Meta and Google Ads, significantly lowering the cost per acquisition (CPA)."
+        },
+        {
+          title: "Content Marketing Engine",
+          description: "Development of a sustainable content calendar focusing on educational and storytelling pieces that increased organic search traffic by 60%."
+        },
+        {
+          title: "Integrated Data Dashboard",
+          description: "Creation of a custom Looker Studio dashboard that aggregates data from all marketing channels, providing the client with real-time ROI visibility."
+        }
+      ]
+    }
+  },
+  {
+    slug: "supply-chain-automation",
+    title: "Supply Chain Automation",
+    category: "System Automation",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000",
+    description: "Custom internal tool developed to automate inventory tracking and supplier communications for a global logistics firm, reducing manual errors by 80%.",
+    liveUrl: "#",
+    alt: "System automation and industrial tech interface",
+    techStack: ["Node.js", "Python", "AWS Lambda", "SQL"],
+    caseStudy: {
+      overview: "To eliminate manual data entry and communication delays in a complex global supply chain through intelligent automation and real-time tracking.",
+      designApproach: "We designed a robust backend architecture capable of handling thousands of concurrent data streams, paired with a minimal, dashboard-style frontend for management oversight.",
+      features: ["Automated inventory alerts", "Supplier API integration", "Predictive delay modeling", "Role-based access control"],
+      screenshots: [
+        "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000",
+        "https://images.unsplash.com/photo-1580894732444-8fecef2601da?auto=format&fit=crop&q=80&w=1000"
+      ]
+    },
+    fullCaseStudy: {
+      fullOverview: "A mid-sized global logistics provider was struggling with a supply chain managed primarily through disparate spreadsheets and manual emails. This led to frequent inventory stock-outs, delayed supplier responses, and a significant overhead in administrative labor. Vizox Studio was commissioned to build a custom 'Supply Chain Brain' — an automated middleware layer that would sit between their suppliers' systems and their internal management software, automating the flow of information across the entire chain.",
+      fullDesignApproach: "The focus was on reliability and data integrity. We built the core system using a serverless architecture on AWS, ensuring it could scale during peak shipping seasons without increased maintenance costs. For the user interface, we focused on 'exception management' — instead of showing users everything, the dashboard only highlights anomalies that require human intervention, such as a delayed shipment or a low-stock alert. This dramatically reduced the cognitive load on the operations team.",
+      fullFeatures: [
+        {
+          title: "Automated Supplier Communication",
+          description: "A system that automatically triggers purchase orders and follows up on shipping confirmations when inventory levels hit pre-defined thresholds."
+        },
+        {
+          title: "Real-Time Inventory Sync",
+          description: "Bridges the gap between physical warehouse scans and digital records, providing a single source of truth for stock levels globally."
+        },
+        {
+          title: "Predictive Analytics Engine",
+          description: "Uses historical data to predict potential delays due to weather or port congestion, allowing the team to pivot before the supply chain is impacted."
+        },
+        {
+          title: "Comprehensive Audit Trail",
+          description: "Every automated action is logged and searchable, providing full transparency for compliance and troubleshooting purposes."
+        }
+      ]
+    }
+  },
+  {
+    slug: "interactive-3d-showcase",
+    title: "Interactive 3D Showcase",
+    category: "Motion & Interaction",
+    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=1000",
+    description: "Engaging 3D product showcase with interactive elements and smooth motion graphics designed to create an immersive online shopping experience.",
+    liveUrl: "#",
+    alt: "3D model and interactive web design",
+    techStack: ["Three.js", "React Three Fiber", "WebGL", "Blender"],
+    caseStudy: {
+      overview: "To elevate a digital storefront by allowing customers to interact with products in a 3D space, increasing engagement and purchase confidence.",
+      designApproach: "We focused on creating highly optimized 3D assets that load quickly on mobile, using smooth spring-based animations for an organic and responsive feel.",
+      features: ["360 degree product rotation", "Interactive exploded views", "Real-time material swapping", "Mobile touch optimization"],
+      screenshots: [
+        "https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=1000",
+        "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1000"
+      ]
+    },
+    fullCaseStudy: {
+      fullOverview: "A high-end electronics brand wanted to move beyond static product photography for their latest flagship launch. They needed a way for customers to explore the intricate internal engineering and premium materials of their product directly in the browser. Vizox Studio developed an interactive 3D experience that allows users to 'deconstruct' the product and see how it works, creating a level of engagement and purchase intent that traditional media couldn't match.",
+      fullDesignApproach: "The challenge was delivering high-fidelity 3D visuals without compromising on page load performance. We used Blender for high-poly modeling and baking, then exported optimized GLTF models for use with Three.js. The user experience was built around natural gestures — orbiting, zooming, and tapping. To add narrative depth, we integrated 'hotspots' that, when clicked, trigger smooth camera transitions and reveal detailed technical specifications, ensuring the motion serves the brand story.",
+      fullFeatures: [
+        {
+          title: "Immersive 3D Interaction",
+          description: "Full 360-degree rotation and zoom capabilities using high-performance WebGL, providing a tactile feel to digital product discovery."
+        },
+        {
+          title: "Interactive Exploded Views",
+          description: "Users can 'explode' the product into its component parts to see the engineering inside, with physics-based animations for a smooth transition."
+        },
+        {
+          title: "Real-Time Customization",
+          description: "An integrated material swapping system allows users to see the product in different finishes and colors, updating the lighting and reflections in real time."
+        },
+        {
+          title: "Optimized Mobile Delivery",
+          description: "Dynamic asset loading and level-of-detail (LOD) techniques ensure the 3D experience is just as fluid on a smartphone as it is on a desktop computer."
+        }
+      ]
+    }
+  },
+];
+
+export interface Service {
+  slug: string;
+  title: string;
+  description: string;
+  icon: any; // We'll handle icons in the component
+  fullDescription: string;
+  process: string[];
+}
+
+export const SERVICES_DATA = [
+  {
+    slug: "brand-identity",
+    title: "Brand Identity",
+    description: "Crafting memorable brand identities that resonate with your target audience.",
+    fullDescription: "At Vizox Studio, we believe a brand is more than just a logo — it's an emotional connection. We work closely with you to define your brand's soul, creating a cohesive visual and verbal identity that sets you apart and builds lasting trust with your customers.",
+    process: [
+      "Brand strategy",
+      "Logo design",
+      "Typography and color system",
+      "Brand guidelines",
+      "Visual identity creation"
+    ]
+  },
+  {
+    slug: "web-development",
+    title: "Web Development",
+    description: "Building fast, responsive, and scalable web applications using modern tech.",
+    fullDescription: "Our development team specializes in building high-performance, accessible, and scalable digital products. From simple landing pages to complex web applications, we use the latest technologies like Next.js, React, and Node.js to ensure your site is fast, secure, and future-proof.",
+    process: [
+      "Website planning and structure",
+      "UI/UX design",
+      "Frontend development",
+      "Backend integration",
+      "Performance optimization"
+    ]
+  },
+  {
+    slug: "mobile-app-development",
+    title: "Mobile App Development",
+    description: "Creating native and cross-platform mobile experiences that users love.",
+    fullDescription: "We build intuitive, high-performance mobile applications for both iOS and Android. Our approach balances beautiful interface design with robust engineering, ensuring your app provides a seamless experience and solves real problems for your users.",
+    process: [
+      "App concept and planning",
+      "UI/UX design",
+      "iOS and Android development",
+      "API integrations",
+      "Testing and launch"
+    ]
+  },
+  {
+    slug: "digital-marketing",
+    title: "Digital Marketing",
+    description: "Data-driven digital marketing strategies to accelerate your business growth.",
+    fullDescription: "Success in the digital world requires more than just a great product — it requires the right audience. Our marketing experts use data-driven strategies across SEO, content, and paid channels to increase your visibility and drive high-quality traffic that converts into loyal customers.",
+    process: [
+      "Content marketing strategy",
+      "Social media campaigns",
+      "SEO optimization",
+      "Google Ads and Facebook Ads",
+      "Performance tracking and scaling"
+    ]
+  },
+  {
+    slug: "system-automation",
+    title: "System Automation",
+    description: "Automating repetitive tasks and complex workflows to increase efficiency.",
+    fullDescription: "Inefficiency is the enemy of growth. We design and implement custom automation systems that handle repetitive tasks, sync data across platforms, and streamline your business workflows, allowing your team to focus on high-impact work that actually moves the needle.",
+    process: [
+      "Business workflow automation",
+      "AI system integrations",
+      "CRM and tool integrations",
+      "Automated pipelines",
+      "Custom coded automation systems"
+    ]
+  },
+  {
+    slug: "motion-interaction",
+    title: "Motion & Interaction",
+    description: "Designing engaging motion graphics and interactive digital experiences.",
+    fullDescription: "Motion brings digital products to life. We use advanced animation and interactive design to create engaging experiences that captivate users, explain complex concepts simply, and add that 'premium' feel that distinguishes world-class products.",
+    process: [
+      "Motion graphics",
+      "UI interaction design",
+      "Video animations",
+      "3D visuals",
+      "Interactive digital experiences"
+    ]
+  }
 ];

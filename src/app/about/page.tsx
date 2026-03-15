@@ -53,7 +53,7 @@ export default function AboutPage() {
               Let's create something meaningful together that your audience will love.
             </p>
             <Button size="lg" className="h-14 px-10 text-lg shadow-[0_0_20px_rgba(124,77,255,0.4)]" asChild>
-              <Link href="/contact">Start a Project</Link>
+              <Link href="/contact">Let's Talk</Link>
             </Button>
           </div>
         </div>

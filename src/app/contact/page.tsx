@@ -160,10 +160,12 @@ export default function ContactPage() {
                               {...field}
                             >
                               <option value="" disabled>Select a service</option>
-                              <option value="branding">Branding</option>
-                              <option value="web">Web Development</option>
-                              <option value="app">App Development</option>
-                              <option value="marketing">Marketing</option>
+                              <option value="brand-identity">Brand Identity</option>
+                              <option value="web-development">Web Development</option>
+                              <option value="mobile-app-development">Mobile App Development</option>
+                              <option value="digital-marketing">Digital Marketing</option>
+                              <option value="system-automation">System Automation</option>
+                              <option value="motion-interaction">Motion & Interaction</option>
                             </select>
                           </FormControl>
                           <FormMessage />

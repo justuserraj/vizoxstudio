@@ -99,7 +99,7 @@ export default function PortfolioPage() {
             <div className="relative z-10">
               <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6">Inspired? Let's talk.</h2>
               <Button size="lg" className="h-14 px-10 text-lg shadow-[0_0_20px_rgba(124,77,255,0.4)]" asChild>
-                <Link href="/contact">Start Your Project</Link>
+                <Link href="/contact">Let's Talk</Link>
               </Button>
             </div>
           </div>
