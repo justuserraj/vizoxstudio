@@ -44,8 +44,9 @@ export const PORTFOLIO_ITEMS: Project[] = [
         "Mobile-first optimization"
       ],
       screenshots: [
-        "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=1000",
-        "https://images.unsplash.com/photo-1447933630913-221b4a60bc61?auto=format&fit=crop&q=80&w=1000"
+        "/images/Pic/coffeeroastsite/coffeeroastsite.netlify.app [1].png",
+        "/images/Pic/coffeeroastsite/coffeeroastsite.netlify.app [2].png",
+        "/images/Pic/coffeeroastsite/coffeeroastsite.netlify.app [3].png"
       ]
     },
     fullCaseStudy: {
@@ -94,8 +95,9 @@ export const PORTFOLIO_ITEMS: Project[] = [
         "Smooth navigation"
       ],
       screenshots: [
-        "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=1000",
-        "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=1000"
+        "/images/Pic/mazaqalreefbakery/mazaqalreefbakery.netlify.app [1].png",
+        "/images/Pic/mazaqalreefbakery/mazaqalreefbakery.netlify.app [2].png",
+        "/images/Pic/mazaqalreefbakery/mazaqalreefbakery.netlify.app [3].png"
       ]
     },
     fullCaseStudy: {
@@ -383,6 +385,114 @@ export const PORTFOLIO_ITEMS: Project[] = [
       ]
     }
   },
+  {
+    slug: "hulk-gym-bgs",
+    title: "Hulk Gym BGS",
+    category: "Web Development",
+    image: "/images/Pic/hulkgymbgs/hulkgymbgs.netlify.app [1].png",
+    description: "A bold, energetic web presence for a specialized fitness facility, focused on member acquisition and showcasing gym amenities.",
+    liveUrl: "https://hulkgymbgs.netlify.app",
+    alt: "Hulk Gym website landing page screenshot",
+    techStack: ["React", "CSS", "Frontend Development"],
+    caseStudy: {
+      overview: "The primary objective was to define a strong digital footprint for Hulk Gym, appealing to fitness enthusiasts with dynamic visuals and clear call-to-actions.",
+      designApproach: "We utilized high-energy layouts, dark UI elements with vibrant accents, and smooth scroll interactions to reflect the gym's intensity.",
+      features: [
+        "Membership onboarding flow",
+        "Class schedule integration",
+        "High-performance media galleries",
+        "Mobile-first responsive design"
+      ],
+      screenshots: [
+        "/images/Pic/hulkgymbgs/hulkgymbgs.netlify.app [1].png",
+        "/images/Pic/hulkgymbgs/hulkgymbgs.netlify.app [2].png",
+        "/images/Pic/hulkgymbgs/hulkgymbgs.netlify.app [3].png"
+      ]
+    },
+    fullCaseStudy: {
+      fullOverview: "Hulk Gym needed to translate their hardcore, high-energy physical environment into a compelling digital experience. Without a robust website, they were relying solely on social media and foot traffic for new sign-ups. Vizox Studio stepped in to build an aggressive, high-converting landing platform that puts their facilities and coaching staff front and center, significantly driving up membership inquiries.",
+      fullDesignApproach: "Our design system was bold and unapologetic. We relied on aggressive typography, stark contrasts (deep blacks, electric greens), and full-bleed action photography. The user journey is straightforward: see the facility, check the schedule, sign up. We optimized every button and form to reduce friction while keeping the visual intensity high throughout the scrolling experience.",
+      fullFeatures: [
+        { title: "Dynamic Hero Banner", description: "Immersive action shots with clear membership CTAs instantly capture user intent." },
+        { title: "Facility Showcase", description: "A structured gallery showcasing gym equipment and spaces to build trust before visits." },
+        { title: "Trainer Profiles", description: "Dedicated sections for coaching staff, highlighting expertise and specialties." },
+        { title: "Lead Generation Forms", description: "Optimized, low-friction contact forms to drive free trial signups." },
+        { title: "Mobile Optimization", description: "Fast-loading mobile experience since over 70% of local traffic comes from smartphones." }
+      ]
+    }
+  },
+  {
+    slug: "raj-portfolio-pvt",
+    title: "Raj Portfolio Pvt",
+    category: "Web Development",
+    image: "/images/Pic/rajportfoliopvt/rajportfoliopvt.vercel.app [1].png",
+    description: "A professional, minimalist personal portfolio website built to showcase freelance projects, resume, and contact details effectively.",
+    liveUrl: "https://rajportfoliopvt.netlify.app",
+    alt: "Raj Portfolio personal website screenshot",
+    techStack: ["Next.js", "Tailwind CSS", "Vercel"],
+    caseStudy: {
+      overview: "To establish a clean and professional personal brand for a freelance developer, highlighting technical skills and past projects.",
+      designApproach: "We chose a minimalist, distraction-free aesthetic with a focus on typography and subtle animations to let the work speak for itself.",
+      features: [
+        "Minimalist UI",
+        "Project case studies",
+        "Interactive resume",
+        "Contact integration"
+      ],
+      screenshots: [
+        "/images/Pic/rajportfoliopvt/rajportfoliopvt.vercel.app [1].png",
+        "/images/Pic/rajportfoliopvt/rajportfoliopvt.vercel.app [2].png",
+        "/images/Pic/rajportfoliopvt/rajportfoliopvt.vercel.app [3].png"
+      ]
+    },
+    fullCaseStudy: {
+      fullOverview: "Raj required a digital portfolio that was as technically sharp as his development skills. The goal was to move away from generic templates and create a tailored web experience that serves as both a resume and a lead generation tool for freelance clients.",
+      fullDesignApproach: "We stripped away all unnecessary visual noise. The design relies heavily on whitespace, a strict monochromatic palette with a single accent color, and crisp typography. By keeping the interface minimal, we ensure that the visitor's attention is entirely focused on Raj's project case studies and technical capabilities.",
+      fullFeatures: [
+        { title: "Clean Landing Experience", description: "A simple, strong introduction that clearly states the value proposition and core skills." },
+        { title: "Interactive Project Grid", description: "A responsive grid displaying past work with hover states that reveal tech stacks and quick links." },
+        { title: "Digital Resume", description: "A timeline-based experience and education section that is easy to scan." },
+        { title: "Direct Contact Form", description: "A built-in messaging system connecting directly to Raj's inbox, removing friction for prospects." },
+        { title: "Optimized Lighthouse Score", description: "Engineered for maximum performance, scoring 100 on accessibility and speed metrics." }
+      ]
+    }
+  },
+  {
+    slug: "the-brothers-cafe",
+    title: "The Brothers Cafe & Restaurant",
+    category: "Web Development",
+    image: "/images/Pic/thebrotherscafeandrestaurantbgs/thebrotherscafeandrestaurantbgs.netlify.app [1].png",
+    description: "A warm, appetizing website for a local dining establishment featuring digital menus, reservations, and location details.",
+    liveUrl: "https://thebrotherscafeandrestaurantbgs.netlify.app",
+    alt: "The Brothers Cafe website screenshot",
+    techStack: ["HTML", "CSS", "JavaScript", "Responsive Design"],
+    caseStudy: {
+      overview: "To generate a welcoming online presence for a cafe, making it simple for customers to explore menus and find ordering information.",
+      designApproach: "The aesthetic was driven by the cafe's physical interior—using warm ambient colors, elegant typography, and high-quality food photography.",
+      features: [
+        "Interactive digital menu",
+        "Engaging food photography",
+        "Business hours and location",
+        "Mobile-friendly layout"
+      ],
+      screenshots: [
+        "/images/Pic/thebrotherscafeandrestaurantbgs/thebrotherscafeandrestaurantbgs.netlify.app [1].png",
+        "/images/Pic/thebrotherscafeandrestaurantbgs/thebrotherscafeandrestaurantbgs.netlify.app [2].png",
+        "/images/Pic/thebrotherscafeandrestaurantbgs/thebrotherscafeandrestaurantbgs.netlify.app [3].png"
+      ]
+    },
+    fullCaseStudy: {
+      fullOverview: "The Brothers Cafe & Restaurant needed a website that matched the warmth and quality of their food. They wanted an online platform where locals and tourists could easily view their extensive menu, check their operating hours, and get a feel for the dining atmosphere before visiting.",
+      fullDesignApproach: "We focused heavily on appetite appeal. The site uses edge-to-edge imagery of signature dishes paired with a warm, inviting color palette of deep browns, creams, and rustic oranges. We structured the content so that the most critical information—menu, location, and contact details—is always one click (or tap) away, prioritizing the user journey on mobile devices.",
+      fullFeatures: [
+        { title: "Digital Menu Navigation", description: "An easy-to-browse menu categorized logically, eliminating the need for clunky PDF downloads." },
+        { title: "Atmosphere Gallery", description: "A visual tour of the cafe space highlighting the ambiance and dining experience." },
+        { title: "Prominent Location Info", description: "Integrated Google Maps and clear business hours heavily highlighted on the homepage." },
+        { title: "Responsive Typographic Hierarchy", description: "Ensuring menu items and prices are highly legible on both large desktop screens and small phones." },
+        { title: "Fast Loading Assets", description: "Optimized high-resolution images to ensure the site remains snappy even on slower mobile networks." }
+      ]
+    }
+  }
 ];
 
 export interface Service {

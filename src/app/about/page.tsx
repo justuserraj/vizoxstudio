@@ -46,6 +46,34 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
+
+          {/* Founder Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center py-20 border-t border-border/50">
+            <div className="lg:col-span-4 flex justify-center lg:justify-start">
+              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-[32px] overflow-hidden shadow-2xl group">
+                <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                <Image 
+                  src="/images/PIC [Founder].png" 
+                  alt="Founder of Vizox Studio"
+                  fill
+                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                />
+              </div>
+            </div>
+            <div className="lg:col-span-8 space-y-6">
+              <span className="text-primary font-bold uppercase tracking-widest text-sm">Meet the Founder</span>
+              <h2 className="text-3xl md:text-5xl font-serif font-bold text-white leading-tight">
+                "We don't just build websites; we build <span className="text-gradient">digital legacies.</span>"
+              </h2>
+              <p className="text-xl text-muted-foreground italic leading-relaxed">
+                "I started Vizox Studio after years of seeing businesses struggle with digital tools that felt cold and complicated. My vision was to create a studio that blends high-end engineering with soulful design — making the internet a more beautiful and functional place, one project at a time."
+              </p>
+              <div>
+                <p className="text-white font-serif text-2xl font-bold">Pratik Raj</p>
+                <p className="text-primary font-medium tracking-wide">Founder</p>
+              </div>
+            </div>
+          </div>
           
           <div className="bg-surface rounded-[24px] p-10 md:p-16 text-center shadow-lg border border-border mt-12">
             <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6">Ready to work with us?</h2>

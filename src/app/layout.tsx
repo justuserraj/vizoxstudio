@@ -17,6 +17,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Vizox Studio | Premium Creative Agency",
   description: "Vizox Studio is a creative digital agency specializing in branding, development, and digital marketing.",
+  icons: {
+    icon: "/images/favicon.jpeg",
+  },
 };
 
 export default function RootLayout({

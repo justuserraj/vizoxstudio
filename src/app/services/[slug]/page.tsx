@@ -8,6 +8,7 @@ import { SERVICES_DATA, PORTFOLIO_ITEMS } from "@/lib/data";
 import { Paintbrush, Code2, Smartphone, TrendingUp, Cpu, MonitorPlay, CheckCircle2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ProjectCard } from "@/components/ProjectCard";
 
@@ -117,6 +118,38 @@ export default function ServiceDetailPage() {
             </div>
           </div>
         </section>
+
+        {/* Brand Logos Section */}
+        {service.slug === "brand-identity" && (
+          <section className="bg-background py-24 border-b border-border">
+            <div className="container px-6 max-w-7xl text-center">
+              <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6">Our Branding Work</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-16">
+                A selection of visual identities and logomarks we've crafted for ambitious brands.
+              </p>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 items-center justify-items-center">
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+                  <motion.div 
+                    key={num}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: num * 0.1 }}
+                    className="relative w-full aspect-square rounded-[24px] bg-white/5 border border-white/10 group grayscale hover:grayscale-0 transition-all duration-500 hover:scale-[1.02] hover:bg-white/10 flex items-center justify-center overflow-hidden"
+                  >
+                    <Image 
+                      src={`/images/Logo%20%5BBranding%5D/${num}.png`} 
+                      alt={`Brand Logo ${num}`}
+                      fill
+                      className="object-contain p-8 drop-shadow-[0_0_15px_rgba(255,255,255,0.05)] group-hover:drop-shadow-[0_0_25px_rgba(124,77,255,0.4)] transition-all duration-500"
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Related Work */}
         {relatedProjects.length > 0 && (

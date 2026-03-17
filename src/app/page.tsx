@@ -3,7 +3,7 @@
 import { motion, Variants, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Paintbrush, Code2, Smartphone, TrendingUp, ArrowRight, Phone, Cpu, Zap, CheckCircle2, ChevronDown } from "lucide-react";
+import { Paintbrush, Code2, Smartphone, TrendingUp, ArrowRight, Phone, Cpu, Zap, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -101,15 +101,32 @@ export default function Home() {
   const [testimonialIndex, setTestimonialIndex] = React.useState(0);
   const [expertiseIndex, setExpertiseIndex] = React.useState(0);
   const [workIndex, setWorkIndex] = React.useState(0);
+  const timerRef = React.useRef<NodeJS.Timeout | null>(null);
 
-  React.useEffect(() => {
-    const timer = setInterval(() => {
+  const startTimer = React.useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
       setTestimonialIndex((prev) => (prev + 1) % TESTIMONIALS.length);
       setExpertiseIndex((prev) => (prev + 1) % SERVICES.length);
       setWorkIndex((prev) => (prev + 1) % featuredPortfolio.length);
     }, 5000);
-    return () => clearInterval(timer);
   }, [featuredPortfolio.length]);
+
+  React.useEffect(() => {
+    startTimer();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [startTimer]);
+
+  const handleManualAction = (action: () => void) => {
+    action();
+    startTimer(); // Reset timer to "pause" auto-slide
+  };
+
+  const swipePower = (offset: number, velocity: number) => {
+    return Math.abs(offset) * velocity;
+  };
 
   return (
     <>
@@ -207,6 +224,23 @@ export default function Home() {
 
             {/* Mobile Carousel */}
             <div className="md:hidden relative px-4">
+              <div className="absolute top-1/2 -left-2 -translate-y-1/2 z-20">
+                <Button 
+                  variant="ghost" size="icon" className="w-10 h-10 rounded-full bg-background/50 backdrop-blur-md border border-border"
+                  onClick={() => handleManualAction(() => setExpertiseIndex((expertiseIndex - 1 + SERVICES.length) % SERVICES.length))}
+                >
+                  <ChevronLeft className="w-6 h-6 text-white" />
+                </Button>
+              </div>
+              <div className="absolute top-1/2 -right-2 -translate-y-1/2 z-20">
+                <Button 
+                  variant="ghost" size="icon" className="w-10 h-10 rounded-full bg-background/50 backdrop-blur-md border border-border"
+                  onClick={() => handleManualAction(() => setExpertiseIndex((expertiseIndex + 1) % SERVICES.length))}
+                >
+                  <ChevronRight className="w-6 h-6 text-white" />
+                </Button>
+              </div>
+
               <AnimatePresence mode="wait">
                 <motion.div
                   key={expertiseIndex}
@@ -214,7 +248,17 @@ export default function Home() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -50 }}
                   transition={{ duration: 0.5, ease: "easeInOut" }}
-                  className="h-full"
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  onDragEnd={(e, { offset, velocity }) => {
+                    const swipe = swipePower(offset.x, velocity.x);
+                    if (swipe < -10000) {
+                      handleManualAction(() => setExpertiseIndex((expertiseIndex + 1) % SERVICES.length));
+                    } else if (swipe > 10000) {
+                      handleManualAction(() => setExpertiseIndex((expertiseIndex - 1 + SERVICES.length) % SERVICES.length));
+                    }
+                  }}
+                  className="h-full touch-pan-y"
                 >
                   <Link href={`/services/${SERVICES[expertiseIndex].slug}`} className="block h-full group">
                     <div className="h-full border border-border/50 bg-surface/50 backdrop-blur-sm rounded-[24px] overflow-hidden p-10 flex flex-col min-h-[350px] shadow-2xl">
@@ -240,7 +284,7 @@ export default function Home() {
                 {SERVICES.map((_, idx) => (
                   <button
                     key={idx}
-                    onClick={() => setExpertiseIndex(idx)}
+                    onClick={() => handleManualAction(() => setExpertiseIndex(idx))}
                     className={cn(
                       "w-2 h-2 rounded-full transition-all duration-300",
                       expertiseIndex === idx ? "w-6 bg-primary" : "bg-border"
@@ -283,6 +327,23 @@ export default function Home() {
 
             {/* Mobile Carousel */}
             <div className="md:hidden relative px-2">
+              <div className="absolute top-1/2 -left-2 -translate-y-1/2 z-20">
+                <Button 
+                  variant="ghost" size="icon" className="w-10 h-10 rounded-full bg-background/50 backdrop-blur-md border border-border"
+                  onClick={() => handleManualAction(() => setWorkIndex((workIndex - 1 + featuredPortfolio.length) % featuredPortfolio.length))}
+                >
+                  <ChevronLeft className="w-6 h-6 text-white" />
+                </Button>
+              </div>
+              <div className="absolute top-1/2 -right-2 -translate-y-1/2 z-20">
+                <Button 
+                  variant="ghost" size="icon" className="w-10 h-10 rounded-full bg-background/50 backdrop-blur-md border border-border"
+                  onClick={() => handleManualAction(() => setWorkIndex((workIndex + 1) % featuredPortfolio.length))}
+                >
+                  <ChevronRight className="w-6 h-6 text-white" />
+                </Button>
+              </div>
+
               <AnimatePresence mode="wait">
                 <motion.div
                   key={workIndex}
@@ -290,6 +351,17 @@ export default function Home() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -50 }}
                   transition={{ duration: 0.5, ease: "easeInOut" }}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  onDragEnd={(e, { offset, velocity }) => {
+                    const swipe = swipePower(offset.x, velocity.x);
+                    if (swipe < -10000) {
+                      handleManualAction(() => setWorkIndex((workIndex + 1) % featuredPortfolio.length));
+                    } else if (swipe > 10000) {
+                      handleManualAction(() => setWorkIndex((workIndex - 1 + featuredPortfolio.length) % featuredPortfolio.length));
+                    }
+                  }}
+                  className="touch-pan-y"
                 >
                   <ProjectCard project={featuredPortfolio[workIndex]} />
                 </motion.div>
@@ -299,7 +371,7 @@ export default function Home() {
                 {featuredPortfolio.map((_, idx) => (
                   <button
                     key={idx}
-                    onClick={() => setWorkIndex(idx)}
+                    onClick={() => handleManualAction(() => setWorkIndex(idx))}
                     className={cn(
                       "w-2 h-2 rounded-full transition-all duration-300",
                       workIndex === idx ? "w-6 bg-primary" : "bg-border"
@@ -361,6 +433,23 @@ export default function Home() {
 
             {/* Mobile Carousel */}
             <div className="md:hidden relative px-4 py-8">
+              <div className="absolute top-1/2 -left-2 -translate-y-1/2 z-20">
+                <Button 
+                  variant="ghost" size="icon" className="w-10 h-10 rounded-full bg-background/50 backdrop-blur-md border border-border"
+                  onClick={() => handleManualAction(() => setTestimonialIndex((testimonialIndex - 1 + TESTIMONIALS.length) % TESTIMONIALS.length))}
+                >
+                  <ChevronLeft className="w-6 h-6 text-white" />
+                </Button>
+              </div>
+              <div className="absolute top-1/2 -right-2 -translate-y-1/2 z-20">
+                <Button 
+                  variant="ghost" size="icon" className="w-10 h-10 rounded-full bg-background/50 backdrop-blur-md border border-border"
+                  onClick={() => handleManualAction(() => setTestimonialIndex((testimonialIndex + 1) % TESTIMONIALS.length))}
+                >
+                  <ChevronRight className="w-6 h-6 text-white" />
+                </Button>
+              </div>
+
               <AnimatePresence mode="wait">
                 <motion.div
                   key={testimonialIndex}
@@ -368,7 +457,17 @@ export default function Home() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -50 }}
                   transition={{ duration: 0.5, ease: "easeInOut" }}
-                  className="p-8 rounded-[24px] border border-border/50 bg-surface/30 backdrop-blur-xl flex flex-col justify-between shadow-2xl min-h-[400px]"
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  onDragEnd={(e, { offset, velocity }) => {
+                    const swipe = swipePower(offset.x, velocity.x);
+                    if (swipe < -10000) {
+                      handleManualAction(() => setTestimonialIndex((testimonialIndex + 1) % TESTIMONIALS.length));
+                    } else if (swipe > 10000) {
+                      handleManualAction(() => setTestimonialIndex((testimonialIndex - 1 + TESTIMONIALS.length) % TESTIMONIALS.length));
+                    }
+                  }}
+                  className="p-8 rounded-[24px] border border-border/50 bg-surface/30 backdrop-blur-xl flex flex-col justify-between shadow-2xl min-h-[400px] touch-pan-y"
                 >
                   <div className="space-y-6">
                     <div className="flex gap-1 justify-center">
@@ -396,7 +495,7 @@ export default function Home() {
                 {TESTIMONIALS.map((_, idx) => (
                   <button
                     key={idx}
-                    onClick={() => setTestimonialIndex(idx)}
+                    onClick={() => handleManualAction(() => setTestimonialIndex(idx))}
                     className={cn(
                       "w-2 h-2 rounded-full transition-all duration-300",
                       testimonialIndex === idx ? "w-6 bg-primary" : "bg-border"
