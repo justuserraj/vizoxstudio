@@ -3,8 +3,8 @@ import { Button } from "./ui/button";
 
 const FOOTER_LINKS = [
   { name: "About", href: "/about" },
-  { name: "Services", href: "/services" },
   { name: "Our Work", href: "/portfolio" },
+  { name: "Process", href: "/process" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -25,6 +25,9 @@ export function Footer() {
                 Vizox<span className="text-primary">.</span>
               </span>
             </Link>
+            <p className="text-muted-foreground mb-4 max-w-sm">
+              Vizox Studio — Building digital systems that turn businesses into scalable brands
+            </p>
             <p className="text-muted-foreground mb-8 max-w-sm">
               Ideas that Inspire. Code that Performs. We are a creative digital agency specializing in branding, development, and digital marketing.
             </p>

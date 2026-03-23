@@ -4,27 +4,9 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Info, X, ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
+import { Info, X, ChevronLeft, ChevronRight, BookOpen, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-export interface CaseStudy {
-  overview: string;
-  designApproach: string;
-  features: string[];
-  screenshots: string[];
-}
-
-export interface Project {
-  slug: string;
-  title: string;
-  category: string;
-  image: string;
-  description: string;
-  liveUrl: string;
-  alt: string;
-  techStack: string[];
-  caseStudy: CaseStudy;
-}
+import { Project } from "@/lib/data";
 
 interface ProjectCardProps {
   project: Project;
@@ -61,49 +43,24 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       >
         <div className="relative overflow-hidden rounded-[16px] mb-6 aspect-square shadow-lg border border-border/50 bg-surface">
           {/* Information Overlay */}
-          <div className="absolute inset-0 bg-primary/60 backdrop-blur-md z-20 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center p-8 text-center">
+          <div className="absolute inset-0 bg-primary/80 backdrop-blur-md z-20 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center p-8 text-center">
             <motion.h4 
               initial={{ y: 20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
-              className="text-white font-serif text-2xl font-bold tracking-wide mb-2"
+              className="text-white font-serif text-3xl font-bold tracking-wide mb-3"
             >
               {project.title}
             </motion.h4>
-            <p className="text-white/90 text-sm mb-4 line-clamp-3">
-              {project.description}
+            <p className="text-white/90 text-sm mb-8 leading-relaxed max-w-[280px]">
+              {project.context}
             </p>
             
-            <div className="flex flex-wrap justify-center gap-2 mb-6">
-              {project.techStack.slice(0, 3).map((tech, i) => (
-                <span key={i} className="px-2 py-0.5 rounded-full bg-white/20 border border-white/20 text-white text-[10px] uppercase tracking-wider font-medium">
-                  {tech}
-                </span>
-              ))}
-              {project.techStack.length > 3 && (
-                <span className="px-2 py-0.5 rounded-full bg-white/20 border border-white/20 text-white text-[10px] uppercase tracking-wider font-medium">
-                  +{project.techStack.length - 3}
-                </span>
-              )}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-3 w-full max-w-[240px]">
-              <a 
-                href={project.liveUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring border border-white/40 bg-white/10 text-white hover:bg-white hover:text-primary h-10 px-4 flex-1 shadow-lg backdrop-blur-md"
-              >
-                <ExternalLink className="mr-2 h-4 w-4" />
-                Live Site
-              </a>
-              <button 
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring bg-white text-primary hover:bg-white/90 h-10 px-4 flex-1 shadow-lg font-bold"
-              >
-                <Info className="mr-2 h-4 w-4" />
-                Case Study
-              </button>
-            </div>
+            <button 
+              className="inline-flex items-center justify-center rounded-full text-sm font-bold transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring bg-white text-primary hover:bg-white/90 h-12 px-8 shadow-xl hover:scale-105 active:scale-95"
+            >
+              <Briefcase className="mr-2 h-4 w-4" />
+              View Business Case
+            </button>
           </div>
 
           <Image
@@ -115,15 +72,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           />
         </div>
         <div>
-          <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
-          <div className="flex flex-wrap gap-2 mb-1">
-            {project.techStack.map((tech, i) => (
-              <span key={i} className="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[11px] font-semibold uppercase tracking-wider">
-                {tech}
-              </span>
-            ))}
-          </div>
-          <p className="text-muted-foreground text-sm mt-3 line-clamp-2">{project.description}</p>
+          <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
+          <p className="text-primary text-xs font-bold uppercase tracking-[0.2em] mb-3">{project.category}</p>
+          <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">{project.context}</p>
         </div>
       </div>
 
@@ -136,26 +87,26 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsModalOpen(false)}
-              className="absolute inset-0 bg-background/90 backdrop-blur-xl"
+              className="absolute inset-0 bg-background/95 backdrop-blur-2xl"
             />
             
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="relative w-full max-w-5xl lg:h-[580px] h-auto overflow-hidden rounded-3xl bg-surface border border-border shadow-2xl"
+              className="relative w-full max-w-6xl lg:h-[650px] h-auto overflow-hidden rounded-[32px] bg-surface border border-border shadow-2xl"
             >
               {/* Close Button */}
               <button 
                 onClick={() => setIsModalOpen(false)}
-                className="absolute top-6 right-6 z-50 p-2 rounded-full bg-background/50 border border-border text-white hover:bg-primary transition-colors duration-300"
+                className="absolute top-8 right-8 z-50 p-2.5 rounded-full bg-background/50 border border-border text-white hover:bg-primary hover:border-primary transition-all duration-300"
               >
                 <X className="w-6 h-6" />
               </button>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
                 {/* Gallery Section */}
-                <div className="relative bg-black aspect-video lg:aspect-auto h-[300px] lg:h-full">
+                <div className="relative bg-black aspect-video lg:aspect-auto h-[350px] lg:h-full group/gallery">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <AnimatePresence mode="wait">
                       <motion.div
@@ -168,7 +119,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                       >
                         <Image
                           src={project.caseStudy.screenshots[currentSlide]}
-                          alt={`${project.title} screenshot ${currentSlide + 1}`}
+                          alt={`${project.title} business showcase ${currentSlide + 1}`}
                           fill
                           className="object-contain"
                         />
@@ -180,24 +131,24 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                     <>
                       <button 
                         onClick={(e) => { e.stopPropagation(); prevSlide(); }}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white backdrop-blur-md transition-all"
+                        className="absolute left-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white backdrop-blur-xl transition-all opacity-0 group-hover/gallery:opacity-100"
                       >
                         <ChevronLeft className="w-6 h-6" />
                       </button>
                       <button 
                         onClick={(e) => { e.stopPropagation(); nextSlide(); }}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white backdrop-blur-md transition-all"
+                        className="absolute right-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white backdrop-blur-xl transition-all opacity-0 group-hover/gallery:opacity-100"
                       >
                         <ChevronRight className="w-6 h-6" />
                       </button>
                       
                       {/* Dots */}
-                      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+                      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2.5">
                         {project.caseStudy.screenshots.map((_, i) => (
                           <button
                             key={i}
                             onClick={(e) => { e.stopPropagation(); setCurrentSlide(i); }}
-                            className={`w-2 h-2 rounded-full transition-all ${i === currentSlide ? 'w-6 bg-primary' : 'bg-white/40'}`}
+                            className={`h-1.5 rounded-full transition-all duration-500 ${i === currentSlide ? 'w-8 bg-primary' : 'w-1.5 bg-white/20'}`}
                           />
                         ))}
                       </div>
@@ -206,60 +157,62 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 </div>
 
                 {/* Content Section */}
-                <div className="p-8 lg:p-12 flex flex-col justify-center">
-                  <div className="mb-6">
-                    <span className="text-primary font-semibold uppercase tracking-wider text-sm mb-2 block">{project.category}</span>
-                    <h2 className="text-2xl md:text-3xl font-serif font-bold text-white mb-4 leading-tight">{project.title}</h2>
+                <div className="p-10 lg:p-16 flex flex-col justify-center overflow-y-auto max-h-[500px] lg:max-h-full">
+                  <div className="mb-10">
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="h-px w-8 bg-primary" />
+                      <span className="text-primary font-bold uppercase tracking-[0.2em] text-xs">{project.category}</span>
+                    </div>
+                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4 leading-tight">{project.title}</h2>
+                    <p className="text-muted-foreground text-lg italic">{project.context}</p>
                   </div>
 
-                  <div className="space-y-6">
+                  <div className="space-y-10">
                     <section>
-                      <h3 className="text-base font-bold text-white mb-2 flex items-center">
-                        <span className="w-6 h-px bg-primary mr-3" />
-                        Project Overview
-                      </h3>
-                      <p className="text-muted-foreground text-sm line-clamp-1">
-                        {project.caseStudy.overview}
+                      <h3 className="text-xs font-bold text-white/40 uppercase tracking-[0.2em] mb-3">Business Overview</h3>
+                      <p className="text-white/80 leading-relaxed">
+                        {project.caseStudy.businessOverview}
                       </p>
                     </section>
 
                     <section>
-                      <h3 className="text-base font-bold text-white mb-2 flex items-center">
-                        <span className="w-6 h-px bg-primary mr-3" />
-                        Design Approach
-                      </h3>
-                      <p className="text-muted-foreground text-sm line-clamp-1">
-                        {project.caseStudy.designApproach}
+                      <h3 className="text-xs font-bold text-white/40 uppercase tracking-[0.2em] mb-3">The Problem</h3>
+                      <p className="text-white/80 leading-relaxed">
+                        {project.caseStudy.problem}
                       </p>
                     </section>
 
-                    <section>
-                      <h3 className="text-base font-bold text-white mb-2 flex items-center">
-                        <span className="w-8 h-px bg-primary mr-3" />
-                        Features Implemented
-                      </h3>
-                      <p className="text-muted-foreground text-sm line-clamp-1">
-                        {project.caseStudy.features.join(", ")}
-                      </p>
-                    </section>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                      <section>
+                        <h3 className="text-xs font-bold text-white/40 uppercase tracking-[0.2em] mb-4">Strategic Action</h3>
+                        <ul className="space-y-2">
+                          {project.caseStudy.whatWeDid.map((item, i) => (
+                            <li key={i} className="flex items-center text-sm text-white/90">
+                              <span className="w-1.5 h-1.5 rounded-full bg-primary mr-3 flex-shrink-0" />
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </section>
 
-                    <div className="pt-6 border-t border-border mt-6 flex flex-col sm:flex-row gap-3">
-                      <Button size="lg" className="w-full sm:w-auto h-12 px-6 text-sm group" asChild>
-                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                          Live Site
-                          <ExternalLink className="ml-2 w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                        </a>
-                      </Button>
+                      <section>
+                        <h3 className="text-xs font-bold text-white/40 uppercase tracking-[0.2em] mb-3">Business Outcome</h3>
+                        <p className="text-sm text-primary/90 font-medium leading-relaxed">
+                          {project.caseStudy.outcome}
+                        </p>
+                      </section>
+                    </div>
+
+                    <div className="pt-10 border-t border-border mt-6">
                       <Button
                         size="lg"
-                        variant="outline"
-                        className="w-full sm:w-auto h-12 px-6 text-sm group border-primary/40 text-primary hover:bg-primary hover:text-white transition-all"
+                        className="w-full h-14 rounded-xl text-base font-bold group bg-primary hover:bg-primary/90 shadow-2xl transition-all"
                         asChild
                         onClick={() => setIsModalOpen(false)}
                       >
                         <Link href={`/case-study/${project.slug}`}>
-                          <BookOpen className="mr-2 w-4 h-4" />
-                          View Full Case Study
+                          <BookOpen className="mr-3 w-5 h-5" />
+                          Read Full Strategic Case Study
                         </Link>
                       </Button>
                     </div>

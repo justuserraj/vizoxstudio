@@ -40,7 +40,7 @@ export default function WhatsAppButton() {
             transition={{ duration: 0.2 }}
             className="bg-[#111] border border-white/10 text-white text-xs font-medium px-3 py-1.5 rounded-full shadow-lg whitespace-nowrap"
           >
-            💬 Free Consultation on WhatsApp
+            💬 Discuss Your Project
           </motion.div>
         )}
       </AnimatePresence>

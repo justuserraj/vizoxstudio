@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ExternalLink, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Briefcase, Target, Award } from "lucide-react";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -20,8 +20,8 @@ export async function generateMetadata({ params }: Props) {
   const project = PORTFOLIO_ITEMS.find((p) => p.slug === slug);
   if (!project) return { title: "Not Found" };
   return {
-    title: `${project.title} — Case Study | Vizox Studio`,
-    description: project.description,
+    title: `${project.title} — Business Case Study | Vizox Studio`,
+    description: project.context,
   };
 }
 
@@ -37,43 +37,34 @@ export default async function CaseStudyPage({ params }: Props) {
     <>
       <Navbar />
       <main className="flex-1 pt-32 pb-24 min-h-screen bg-background">
-        <div className="container px-6 max-w-4xl mx-auto">
+        <div className="container px-6 max-w-5xl mx-auto">
           {/* Back Link */}
           <Link
             href="/portfolio"
-            className="inline-flex items-center text-primary font-medium hover:text-white transition-colors mb-12 group"
+            className="inline-flex items-center text-primary font-bold text-sm uppercase tracking-widest hover:text-white transition-colors mb-16 group"
           >
-            <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
-            Back to Our Work
+            <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+            Back to Case Studies
           </Link>
 
           {/* Header */}
-          <header className="mb-16">
-            <span className="px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-sm font-medium tracking-wide uppercase mb-6 inline-block">
-              {project.category}
-            </span>
-            <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6 leading-tight">
-              {project.title} <span className="text-gradient">Case Study.</span>
-            </h1>
-            
-            <div className="flex flex-wrap gap-8 pt-8 border-t border-border mt-8">
-              <div>
-                <p className="text-sm text-muted-foreground uppercase mb-1">Category</p>
-                <p className="text-white font-medium">{project.category}</p>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground uppercase mb-1">Technologies</p>
-                <p className="text-white font-medium">{project.techStack.slice(0, 2).join(", ")}</p>
-              </div>
-              <div>
-                <p className="text-sm text-muted-foreground uppercase mb-1">Focus</p>
-                <p className="text-white font-medium">UI/UX & Performance</p>
-              </div>
+          <header className="mb-20">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="h-px w-12 bg-primary" />
+              <span className="text-primary font-bold uppercase tracking-[0.3em] text-xs">
+                {project.category}
+              </span>
             </div>
+            <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-8 leading-tight">
+              {project.title}
+            </h1>
+            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl italic">
+              "{project.context}"
+            </p>
           </header>
 
-          {/* Primary Image */}
-          <div className="relative w-full aspect-[16/9] rounded-[24px] overflow-hidden mb-16 shadow-2xl">
+          {/* Hero Image */}
+          <div className="relative w-full aspect-[21/9] rounded-[32px] overflow-hidden mb-24 shadow-2xl border border-border/50">
             <Image 
               src={project.image}
               alt={project.alt}
@@ -83,75 +74,108 @@ export default async function CaseStudyPage({ params }: Props) {
             />
           </div>
 
-          <div className="prose prose-lg prose-invert max-w-none space-y-16">
-            {/* Project Overview */}
-            <section>
-              <h2 className="text-3xl font-serif font-bold text-white mb-6">Project Overview</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                {fullCaseStudy.fullOverview}
-              </p>
-            </section>
-
-            {/* Design Approach */}
-            <section>
-              <h2 className="text-3xl font-serif font-bold text-white mb-6">Design Approach</h2>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                {fullCaseStudy.fullDesignApproach}
-              </p>
-            </section>
-
-            {/* Screenshots Gallery - Reusing structural elements from old work page */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-16">
-              {project.caseStudy.screenshots.map((img, idx) => (
-                <div key={idx} className="relative aspect-[4/3] rounded-[16px] overflow-hidden border border-border/50">
-                  <Image src={img} fill alt={`${project.title} view ${idx + 1}`} className="object-cover hover:scale-105 transition-transform duration-500" />
-                </div>
-              ))}
-            </div>
-
-            {/* Feature Implementation */}
-            <section tabIndex={0} className="focus:outline-none">
-              <h2 className="text-3xl font-serif font-bold text-white mb-8">Feature Implementation</h2>
-              <div className="grid grid-cols-1 gap-4">
-                {fullCaseStudy.fullFeatures.map((feature, idx) => (
-                  <div key={idx} className="flex items-start bg-surface/30 border border-border/50 rounded-xl p-6">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mr-4 mt-1" />
-                    <div>
-                      <h4 className="text-white font-bold mb-1">{feature.title}</h4>
-                      <p className="text-muted-foreground text-sm">{feature.description}</p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+            {/* Sidebar Stats/Info */}
+            <div className="lg:col-span-4 space-y-12">
+              <div className="p-8 rounded-[24px] bg-surface border border-border sticky top-32">
+                <h3 className="text-white font-bold mb-8 flex items-center gap-2">
+                  <Briefcase className="w-5 h-5 text-primary" />
+                  Execution Summary
+                </h3>
+                <div className="space-y-8">
+                  <div>
+                    <p className="text-[10px] text-white/40 uppercase tracking-[0.2em] mb-2">Primary Objective</p>
+                    <p className="text-white text-sm font-medium leading-relaxed">{project.caseStudy.businessOverview}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-white/40 uppercase tracking-[0.2em] mb-2">Core Services Applied</p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.caseStudy.whatWeDid.map((work) => (
+                        <span key={work} className="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-white/70 text-[10px] uppercase font-bold">
+                          {work}
+                        </span>
+                      ))}
                     </div>
                   </div>
-                ))}
+                </div>
               </div>
-            </section>
+            </div>
 
-            {/* Technology Stack */}
-            <section>
-              <h2 className="text-3xl font-serif font-bold text-white mb-6">Technology Stack</h2>
-              <div className="flex flex-wrap gap-3">
-                {project.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-5 py-3 rounded-full bg-surface border border-border text-white text-sm font-medium hover:border-primary/50 transition-colors"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </section>
+            {/* Main Content */}
+            <div className="lg:col-span-8 space-y-24">
+              {/* Business Overview */}
+              <section>
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Target className="w-5 h-5 text-primary" />
+                  </div>
+                  <h2 className="text-3xl font-serif font-bold text-white">The Business Challenge</h2>
+                </div>
+                <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+                  <p>{fullCaseStudy.fullOverview}</p>
+                  <p className="p-8 bg-surface/50 border-l-4 border-primary rounded-r-2xl italic text-white/90">
+                    {fullCaseStudy.problemStatement}
+                  </p>
+                </div>
+              </section>
 
-            {/* Live Project CTA */}
-            <div className="mt-24 pt-12 border-t border-border text-center">
-              <h2 className="text-3xl font-serif font-bold text-white mb-8">Ready to see it in action?</h2>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button size="lg" className="h-14 px-10 text-lg group hover:shadow-[0_0_20px_rgba(124,77,255,0.4)] transition-shadow w-full sm:w-auto" asChild>
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                    View Live Project
-                    <ExternalLink className="ml-2 w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </a>
-                </Button>
-                <Button size="lg" variant="outline" className="h-14 px-10 text-lg w-full sm:w-auto" asChild>
-                  <Link href="/portfolio">← Back to Our Work</Link>
+              {/* Strategic Solution */}
+              <section>
+                <div className="flex items-center gap-4 mb-10">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Award className="w-5 h-5 text-primary" />
+                  </div>
+                  <h2 className="text-3xl font-serif font-bold text-white">Strategic Implementation</h2>
+                </div>
+                <div className="grid grid-cols-1 gap-6">
+                  {fullCaseStudy.solutionDelivered.map((solution, idx) => (
+                    <div key={idx} className="group p-8 bg-surface border border-border rounded-[24px] hover:border-primary/50 transition-all">
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="text-primary font-mono text-sm font-bold">0{idx + 1}</span>
+                        <h4 className="text-white font-bold text-xl">{solution.title}</h4>
+                      </div>
+                      <p className="text-muted-foreground leading-relaxed">{solution.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              {/* Visual Evidence */}
+              <section>
+                <h2 className="text-3xl font-serif font-bold text-white mb-10">Operational Evidence</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {project.caseStudy.screenshots.map((img, idx) => (
+                    <div key={idx} className="relative aspect-[16/10] rounded-[24px] overflow-hidden border border-border group">
+                      <Image 
+                        src={img} 
+                        fill 
+                        alt={`${project.title} operational view ${idx + 1}`} 
+                        className="object-cover group-hover:scale-110 transition-transform duration-700" 
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <p className="text-white text-xs font-medium uppercase tracking-widest">Interface Implementation {idx + 1}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              {/* Business Impact */}
+              <section className="p-12 rounded-[32px] bg-primary text-white relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 blur-[100px] -mr-32 -mt-32" />
+                <h2 className="text-3xl font-serif font-bold mb-6 relative z-10">Strategic Impact</h2>
+                <p className="text-xl leading-relaxed font-medium relative z-10 opacity-90">
+                  {fullCaseStudy.businessImpact}
+                </p>
+              </section>
+
+              {/* Final CTA */}
+              <div className="pt-12 text-center">
+                <Button size="lg" className="h-16 px-12 text-lg font-bold rounded-2xl group shadow-2xl transition-all hover:scale-105" asChild>
+                  <Link href="/contact">
+                    Work With Us To Scale Your Business
+                    <ArrowLeft className="ml-3 w-5 h-5 rotate-180 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </Button>
               </div>
             </div>

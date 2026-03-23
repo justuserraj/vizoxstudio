@@ -9,9 +9,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_LINKS = [
   { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Services", href: "/services" },
   { name: "Our Work", href: "/portfolio" },
+  { name: "Process", href: "/process" },
+  { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -62,7 +62,7 @@ export function Navbar() {
         </nav>
         <div className="hidden md:flex items-center gap-4">
           <Button asChild className="rounded-[12px]">
-            <Link href="/contact">Let's Talk</Link>
+            <Link href="/contact">Get a Free Growth Audit</Link>
           </Button>
         </div>
         
@@ -112,7 +112,7 @@ export function Navbar() {
                     </Link>
                   ))}
                   <Button asChild className="w-full h-14 text-lg rounded-[16px] mt-4 shadow-[0_0_20px_rgba(124,77,255,0.4)]">
-                    <Link href="/contact" onClick={() => setIsMenuOpen(false)}>Let's Talk</Link>
+                    <Link href="/contact" onClick={() => setIsMenuOpen(false)}>Get a Free Growth Audit</Link>
                   </Button>
                 </nav>
               </motion.div>

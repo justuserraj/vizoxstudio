@@ -13,63 +13,45 @@ import { PORTFOLIO_ITEMS } from "@/lib/data";
 import { ProjectCard } from "@/components/ProjectCard";
 import { cn } from "@/lib/utils";
 
-const SERVICES = [
+const GROWTH_SYSTEM = [
   {
-    slug: "brand-identity",
-    title: "Brand Identity",
-    description: "Crafting memorable brand identities that resonate with your target audience.",
+    slug: "brand-foundation",
+    title: "Brand Foundation",
+    description: "Build trust and credibility instantly",
     icon: Paintbrush,
   },
   {
-    slug: "web-development",
-    title: "Web Development",
-    description: "Building fast, responsive, and scalable web applications using modern tech.",
+    slug: "digital-infrastructure",
+    title: "Digital Infrastructure",
+    description: "Present your business professionally online",
     icon: Code2,
   },
   {
-    slug: "mobile-app-development",
-    title: "Mobile App Development",
-    description: "Creating native and cross-platform mobile experiences that users love.",
-    icon: Smartphone,
-  },
-  {
-    slug: "digital-marketing",
-    title: "Digital Marketing",
-    description: "Data-driven digital marketing strategies to accelerate your business growth.",
+    slug: "growth-systems",
+    title: "Growth Systems",
+    description: "Turn visitors into paying customers",
     icon: TrendingUp,
-  },
-  {
-    slug: "system-automation",
-    title: "System Automation",
-    description: "Automating repetitive tasks and complex workflows to increase efficiency.",
-    icon: Cpu,
-  },
-  {
-    slug: "motion-interaction",
-    title: "Motion & Interaction",
-    description: "Designing engaging motion graphics and interactive digital experiences.",
-    icon: Zap,
   },
 ];
 
 const TESTIMONIALS = [
   {
-    review: "Working with Vizox Studio was smooth and professional. The website they built helped our business look much more credible.",
-    business: "ABC Restaurant",
-    name: "Rahul Sharma",
-    role: "Owner",
+    review: "Vizox Studio completely changed how we approach our digital presence. Their strategic foundation helped us double our conversion rate in 3 months.",
+    business: "TechFlow Solutions",
+    name: "Rajesh Kumar",
+    role: "CEO",
   },
   {
-    review: "The level of creativity and technical skill at Vizox is unmatched. They delivered exactly what we needed on time.",
-    business: "Tech-Start Solutions",
-    name: "Priya Patel",
-    role: "Owner",
+    review: "The Brand Foundation work they did was a game-changer. We finally have a global-standard identity that our clients trust implicitly.",
+    business: "Elevate Coffee Roasters",
+    name: "Sanjay Singhania",
+    role: "Founder",
   },
   {
-    review: "Professional, responsive, and highly creative. I couldn't be happier with our new brand identity.",
-    business: "Nature's Harvest",
-    name: "Anand Verma",
-    role: "Owner",
+    review: "Their Digital Infrastructure is world-class. Our site speed and performance metrics improved drastically, leading to a much better ROI.",
+    business: "Nexus Logistics",
+    name: "Priyanka Sharma",
+    role: "Director",
   },
 ];
 
@@ -94,9 +76,8 @@ export default function Home() {
     "Motion & Interaction"
   ];
   
-  const featuredPortfolio = categories.map(cat => 
-    PORTFOLIO_ITEMS.find(p => p.category === cat) || PORTFOLIO_ITEMS[0]
-  );
+  // Limiting Featured Portfolio to top 5
+  const featuredPortfolio = PORTFOLIO_ITEMS.slice(0, 5);
 
   const [testimonialIndex, setTestimonialIndex] = React.useState(0);
   const [expertiseIndex, setExpertiseIndex] = React.useState(0);
@@ -107,7 +88,7 @@ export default function Home() {
     if (timerRef.current) clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
       setTestimonialIndex((prev) => (prev + 1) % TESTIMONIALS.length);
-      setExpertiseIndex((prev) => (prev + 1) % SERVICES.length);
+      setExpertiseIndex((prev) => (prev + 1) % GROWTH_SYSTEM.length);
       setWorkIndex((prev) => (prev + 1) % featuredPortfolio.length);
     }, 5000);
   }, [featuredPortfolio.length]);
@@ -139,30 +120,32 @@ export default function Home() {
 
           <div className="container px-6 max-w-5xl relative z-10 text-center">
             <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="space-y-8">
-              <motion.div variants={fadeIn} className="inline-block relative">
-                <span className="px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-sm font-medium tracking-wide uppercase mb-6 block">
-                  Welcome to Vizox Studio
-                </span>
-              </motion.div>
 
               <motion.h1
                 variants={fadeIn}
-                className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold tracking-tight text-white leading-tight"
+                className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold tracking-tight text-white leading-tight"
               >
-                Ideas that Inspire.<br />
-                <span className="text-gradient">Code that Performs.</span>
+                Stop Losing Customers Because of <br className="hidden md:block"/>
+                <span className="text-gradient">Bad Branding and Weak Websites</span>
               </motion.h1>
 
               <motion.p
                 variants={fadeIn}
                 className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
               >
-                We are a creative digital agency specializing in premium branding, cutting-edge development, and result-driven marketing.
+                We help businesses transform their digital presence into a system that consistently attracts and converts customers.
+              </motion.p>
+              
+              <motion.p
+                variants={fadeIn}
+                className="text-base text-primary/80 max-w-2xl mx-auto leading-relaxed font-medium mt-[-10px]"
+              >
+                Vizox Studio builds digital systems that turn businesses into scalable brands
               </motion.p>
 
               <motion.div variants={fadeIn} className="pt-8 flex items-center justify-center gap-4 flex-wrap">
                 <Button size="lg" className="text-base h-14 px-8" asChild>
-                  <Link href="/portfolio">View Our Work <ArrowRight className="ml-2 w-5 h-5" /></Link>
+                  <Link href="/contact">Get a Free Growth Audit</Link>
                 </Button>
                 <Button 
                   size="lg" 
@@ -170,25 +153,46 @@ export default function Home() {
                   className="text-base h-14 px-8 border-primary/40 text-white hover:bg-primary hover:text-white transition-all duration-300 group min-w-[160px]" 
                   asChild
                 >
-                  <a href="tel:+918271754978" className="flex items-center justify-center">
-                    <Phone className="mr-2 w-5 h-5" />
-                    <span className="group-hover:hidden">Call Now</span>
-                    <span className="hidden group-hover:inline">+91 8271754978</span>
-                  </a>
+                  <Link href="/portfolio" className="flex items-center justify-center">
+                    <span>View Our Work</span>
+                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                 </Button>
               </motion.div>
             </motion.div>
           </div>
         </section>
 
-        {/* Our Expertise */}
+        {/* The Hidden Problem Section */}
+        <section className="py-24 bg-surface relative z-10 border-b border-border/50">
+          <div className="container px-6 max-w-4xl text-center">
+            <motion.div
+              initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeIn}
+            >
+              <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6">
+                Why Many Businesses Lose <br className="hidden md:block"/> Customers Online
+              </h2>
+              <p className="text-muted-foreground text-lg md:text-xl leading-relaxed mb-8 max-w-2xl mx-auto">
+                Many businesses lose potential customers online without realizing it. Weak branding, outdated websites, and poor digital positioning quietly push people away before they ever contact you.
+              </p>
+              <div className="inline-block px-6 py-3 rounded-xl border border-primary/30 bg-primary/10">
+                <p className="text-white font-serif text-xl md:text-2xl font-bold tracking-wide">
+                  Most businesses don't have a traffic problem. <br className="hidden md:block"/>
+                  <span className="text-primary text-xl md:text-2xl">They have a conversion problem.</span>
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* The Vizox Growth System */}
         <section className="py-24 md:py-32 bg-background relative z-10">
           <div className="container px-6 max-w-7xl">
             <motion.div
               initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeIn}
               className="mb-16 md:mb-24 text-center"
             >
-              <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6">Our Expertise</h2>
+              <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6">The Vizox Growth System</h2>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
                 Comprehensive digital solutions tailored to elevate your brand and drive business growth.
               </p>
@@ -197,9 +201,9 @@ export default function Home() {
             {/* Desktop Grid */}
             <motion.div
               initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}
-              className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+              className="hidden md:grid md:grid-cols-3 gap-8"
             >
-              {SERVICES.map((service, idx) => (
+              {GROWTH_SYSTEM.map((service, idx) => (
                 <motion.div key={idx} variants={fadeIn} className="h-full">
                   <Link href={`/services/${service.slug}`} className="block h-full group">
                     <div className="h-full border border-border/50 bg-surface/50 backdrop-blur-sm group-hover:border-primary/50 group-hover:bg-surface/80 transition-all duration-300 rounded-[24px] overflow-hidden p-8 flex flex-col">
@@ -227,7 +231,7 @@ export default function Home() {
               <div className="absolute top-1/2 -left-2 -translate-y-1/2 z-20">
                 <Button 
                   variant="ghost" size="icon" className="w-10 h-10 rounded-full bg-background/50 backdrop-blur-md border border-border"
-                  onClick={() => handleManualAction(() => setExpertiseIndex((expertiseIndex - 1 + SERVICES.length) % SERVICES.length))}
+                  onClick={() => handleManualAction(() => setExpertiseIndex((expertiseIndex - 1 + GROWTH_SYSTEM.length) % GROWTH_SYSTEM.length))}
                 >
                   <ChevronLeft className="w-6 h-6 text-white" />
                 </Button>
@@ -235,7 +239,7 @@ export default function Home() {
               <div className="absolute top-1/2 -right-2 -translate-y-1/2 z-20">
                 <Button 
                   variant="ghost" size="icon" className="w-10 h-10 rounded-full bg-background/50 backdrop-blur-md border border-border"
-                  onClick={() => handleManualAction(() => setExpertiseIndex((expertiseIndex + 1) % SERVICES.length))}
+                  onClick={() => handleManualAction(() => setExpertiseIndex((expertiseIndex + 1) % GROWTH_SYSTEM.length))}
                 >
                   <ChevronRight className="w-6 h-6 text-white" />
                 </Button>
@@ -253,24 +257,24 @@ export default function Home() {
                   onDragEnd={(e, { offset, velocity }) => {
                     const swipe = swipePower(offset.x, velocity.x);
                     if (swipe < -10000) {
-                      handleManualAction(() => setExpertiseIndex((expertiseIndex + 1) % SERVICES.length));
+                      handleManualAction(() => setExpertiseIndex((expertiseIndex + 1) % GROWTH_SYSTEM.length));
                     } else if (swipe > 10000) {
-                      handleManualAction(() => setExpertiseIndex((expertiseIndex - 1 + SERVICES.length) % SERVICES.length));
+                      handleManualAction(() => setExpertiseIndex((expertiseIndex - 1 + GROWTH_SYSTEM.length) % GROWTH_SYSTEM.length));
                     }
                   }}
                   className="h-full touch-pan-y"
                 >
-                  <Link href={`/services/${SERVICES[expertiseIndex].slug}`} className="block h-full group">
+                  <Link href={`/services/${GROWTH_SYSTEM[expertiseIndex].slug}`} className="block h-full group">
                     <div className="h-full border border-border/50 bg-surface/50 backdrop-blur-sm rounded-[24px] overflow-hidden p-10 flex flex-col min-h-[350px] shadow-2xl">
                       <div className="flex justify-between items-start mb-8">
                         <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center">
-                          {React.createElement(SERVICES[expertiseIndex].icon, { className: "w-7 h-7 text-primary" })}
+                          {React.createElement(GROWTH_SYSTEM[expertiseIndex].icon, { className: "w-7 h-7 text-primary" })}
                         </div>
                         <ArrowRight className="w-6 h-6 text-primary mt-4" />
                       </div>
                       
-                      <h3 className="text-2xl font-serif font-bold text-white mb-4">{SERVICES[expertiseIndex].title}</h3>
-                      <p className="text-muted-foreground text-lg mb-8 leading-relaxed">{SERVICES[expertiseIndex].description}</p>
+                      <h3 className="text-2xl font-serif font-bold text-white mb-4">{GROWTH_SYSTEM[expertiseIndex].title}</h3>
+                      <p className="text-muted-foreground text-lg mb-8 leading-relaxed">{GROWTH_SYSTEM[expertiseIndex].description}</p>
                       
                       <div className="mt-auto flex items-center text-primary text-sm font-bold uppercase tracking-widest gap-2">
                         View Details
@@ -281,7 +285,7 @@ export default function Home() {
               </AnimatePresence>
               
               <div className="flex justify-center gap-2 mt-10">
-                {SERVICES.map((_, idx) => (
+                {GROWTH_SYSTEM.map((_, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleManualAction(() => setExpertiseIndex(idx))}
@@ -296,19 +300,19 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Featured Work Section */}
+        {/* Featured Case Studies Section */}
         <section className="py-24 md:py-32 bg-surface border-b border-border relative z-10">
           <div className="container px-6 max-w-7xl">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 md:mb-24 gap-6">
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
-                <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-4">Featured Work</h2>
-                <p className="text-muted-foreground text-lg max-w-xl">
-                  A glimpse into our most recent and impactful projects across all our services.
+                <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-4">Strategic Business Cases</h2>
+                <p className="text-muted-foreground text-lg max-w-xl leading-relaxed">
+                  Explore how we help real businesses solve digital friction and establish a dominant market presence.
                 </p>
               </motion.div>
               <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
-                <Button variant="outline" asChild>
-                  <Link href="/portfolio">Explore All Projects</Link>
+                <Button variant="outline" size="lg" className="h-12 px-8 rounded-full border-primary/40 text-primary hover:bg-primary hover:text-white transition-all font-bold" asChild>
+                  <Link href="/portfolio">View All Business Cases</Link>
                 </Button>
               </motion.div>
             </div>
@@ -380,6 +384,44 @@ export default function Home() {
                 ))}
               </div>
             </div>
+
+            {/* Visual Authority Work Nested Section */}
+            <div className="mt-32 pt-16 border-t border-border/50">
+              <div className="text-center mb-16">
+                <span className="px-5 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold tracking-[0.2em] uppercase mb-6 inline-block">
+                  Visual Authority
+                </span>
+                <h3 className="text-2xl md:text-5xl font-serif font-bold text-white mb-6">Strategic Brand Identities</h3>
+                <p className="text-muted-foreground text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
+                  Establishing instant trust and credibility through high-end visual systems for established businesses.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 items-center justify-items-center">
+                {[1, 2, 3, 4, 5, 6].map((num) => (
+                  <motion.div 
+                    key={num}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: num * 0.1 }}
+                    className="relative w-full aspect-square rounded-[24px] bg-white/5 border border-white/10 group grayscale hover:grayscale-0 transition-all duration-500 hover:scale-[1.02] hover:bg-white/10 flex items-center justify-center overflow-hidden shadow-xl"
+                  >
+                    <Image 
+                      src={`/images/Logo%20%5BBranding%5D/${num}.png`} 
+                      alt={`Brand Strategy Case ${num}`}
+                      fill
+                      className="object-contain p-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.05)] group-hover:drop-shadow-[0_0_25px_rgba(124,77,255,0.4)] transition-all duration-500"
+                    />
+                  </motion.div>
+                ))}
+              </div>
+              <div className="mt-16 text-center">
+                <Button variant="outline" size="lg" className="h-12 px-8 rounded-full border-primary/30 hover:bg-primary hover:text-white transition-all font-bold" asChild>
+                  <Link href="/services/brand-foundation">Explore Our Brand Strategy</Link>
+                </Button>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -399,10 +441,9 @@ export default function Home() {
               </p>
             </motion.div>
 
-            {/* Desktop Grid */}
             <motion.div
               initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer}
-              className="hidden md:grid md:grid-cols-3 gap-8"
+              className="grid grid-cols-1 md:grid-cols-3 gap-8"
             >
               {TESTIMONIALS.map((t, idx) => (
                 <motion.div key={idx} variants={fadeIn}>
@@ -430,82 +471,10 @@ export default function Home() {
                 </motion.div>
               ))}
             </motion.div>
-
-            {/* Mobile Carousel */}
-            <div className="md:hidden relative px-4 py-8">
-              <div className="absolute top-1/2 -left-2 -translate-y-1/2 z-20">
-                <Button 
-                  variant="ghost" size="icon" className="w-10 h-10 rounded-full bg-background/50 backdrop-blur-md border border-border"
-                  onClick={() => handleManualAction(() => setTestimonialIndex((testimonialIndex - 1 + TESTIMONIALS.length) % TESTIMONIALS.length))}
-                >
-                  <ChevronLeft className="w-6 h-6 text-white" />
-                </Button>
-              </div>
-              <div className="absolute top-1/2 -right-2 -translate-y-1/2 z-20">
-                <Button 
-                  variant="ghost" size="icon" className="w-10 h-10 rounded-full bg-background/50 backdrop-blur-md border border-border"
-                  onClick={() => handleManualAction(() => setTestimonialIndex((testimonialIndex + 1) % TESTIMONIALS.length))}
-                >
-                  <ChevronRight className="w-6 h-6 text-white" />
-                </Button>
-              </div>
-
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={testimonialIndex}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                  drag="x"
-                  dragConstraints={{ left: 0, right: 0 }}
-                  onDragEnd={(e, { offset, velocity }) => {
-                    const swipe = swipePower(offset.x, velocity.x);
-                    if (swipe < -10000) {
-                      handleManualAction(() => setTestimonialIndex((testimonialIndex + 1) % TESTIMONIALS.length));
-                    } else if (swipe > 10000) {
-                      handleManualAction(() => setTestimonialIndex((testimonialIndex - 1 + TESTIMONIALS.length) % TESTIMONIALS.length));
-                    }
-                  }}
-                  className="p-8 rounded-[24px] border border-border/50 bg-surface/30 backdrop-blur-xl flex flex-col justify-between shadow-2xl min-h-[400px] touch-pan-y"
-                >
-                  <div className="space-y-6">
-                    <div className="flex gap-1 justify-center">
-                      {[1, 2, 3, 4, 5].map((s) => (
-                        <svg key={s} className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                      ))}
-                    </div>
-                    <p className="text-muted-foreground italic leading-relaxed text-lg text-center">
-                      "{TESTIMONIALS[testimonialIndex].review}"
-                    </p>
-                  </div>
-                  <div className="pt-8 mt-8 border-t border-border/50 text-center">
-                    <p className="text-sm font-bold text-primary uppercase tracking-wider mb-2">{TESTIMONIALS[testimonialIndex].business}</p>
-                    <div>
-                      <p className="text-white font-serif text-lg font-bold">{TESTIMONIALS[testimonialIndex].name}</p>
-                      <p className="text-primary text-sm font-medium">{TESTIMONIALS[testimonialIndex].role}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-              
-              <div className="flex justify-center gap-2 mt-8">
-                {TESTIMONIALS.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => handleManualAction(() => setTestimonialIndex(idx))}
-                    className={cn(
-                      "w-2 h-2 rounded-full transition-all duration-300",
-                      testimonialIndex === idx ? "w-6 bg-primary" : "bg-border"
-                    )}
-                  />
-                ))}
-              </div>
-            </div>
           </div>
         </section>
+
+        {/* Removed process segment */}
 
         {/* CTA Section */}
         <section className="py-32 bg-background relative z-10 overflow-hidden">
@@ -514,16 +483,21 @@ export default function Home() {
 
           <div className="container px-6 max-w-4xl text-center relative z-10">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="space-y-8">
-              <h2 className="text-4xl md:text-6xl font-serif font-bold text-white leading-tight">
-                Have a project in mind?<br />
-                <span className="text-gradient">Let's talk.</span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-tight">
+                Ready to Strengthen Your <br className="hidden md:block"/>
+                <span className="text-gradient">Digital Presence?</span>
               </h2>
-              <p className="text-xl text-muted-foreground">
-                We're always looking for new challenges and partners. Let's create something extraordinary together.
+              <p className="text-xl text-muted-foreground mx-auto max-w-2xl">
+                Let's explore how your business can attract more customers and grow with the right digital systems.
               </p>
-              <Button size="lg" className="h-14 px-10 text-lg shadow-[0_0_30px_rgba(124,77,255,0.3)]" asChild>
-                <Link href="/contact">Let's Talk</Link>
-              </Button>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
+                <Button size="lg" className="h-14 px-8 text-lg w-full sm:w-auto shadow-[0_0_30px_rgba(124,77,255,0.3)]" asChild>
+                  <Link href="/contact">Get a Free Growth Audit</Link>
+                </Button>
+                <Button size="lg" variant="outline" className="h-14 px-8 text-lg border-primary/40 w-full sm:w-auto hover:bg-white/5" asChild>
+                  <Link href="/contact">Schedule a Call</Link>
+                </Button>
+              </div>
             </motion.div>
           </div>
         </section>

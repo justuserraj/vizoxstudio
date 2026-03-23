@@ -7,40 +7,22 @@ import Link from "next/link";
 
 const ALL_SERVICES = [
   {
-    slug: "brand-identity",
-    title: "Brand Identity",
-    description: "Creating comprehensive brand systems, from logo design to brand guidelines and typography selection.",
+    slug: "brand-foundation",
+    title: "Brand Foundation",
+    description: "Establishing visual authority and trust signals that position your business as a market leader, converting visitors into clients.",
     icon: Paintbrush,
   },
   {
-    slug: "web-development",
-    title: "Web Development",
-    description: "High-performance marketing websites and interactive web applications using Next.js and React.",
+    slug: "digital-infrastructure",
+    title: "Digital Infrastructure",
+    description: "Engineering high-performance, scalable online presences that serve as the rock-solid backbone of your digital growth.",
     icon: Code2,
   },
   {
-    slug: "mobile-app-development",
-    title: "Mobile App Development",
-    description: "Native and cross-platform mobile applications prioritizing intuitive user experiences.",
-    icon: Smartphone,
-  },
-  {
-    slug: "digital-marketing",
-    title: "Digital Marketing",
-    description: "Data-driven SEO, content marketing, and paid campaign strategies that convert.",
+    slug: "growth-systems",
+    title: "Growth Systems",
+    description: "Deploying data-driven, conversion-first strategies that turn traffic into predictable revenue and business results.",
     icon: TrendingUp,
-  },
-  {
-    slug: "system-automation",
-    title: "System Automation",
-    description: "Custom internal tools and automation to streamline your business operations.",
-    icon: Cpu,
-  },
-  {
-    slug: "motion-interaction",
-    title: "Motion & Interaction",
-    description: "Engaging 3D modeling, advanced animations, and Lottie implementations.",
-    icon: MonitorPlay,
   },
 ];
 

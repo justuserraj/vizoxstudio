@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -8,77 +8,50 @@ import Link from "next/link";
 import { ProjectCard } from "@/components/ProjectCard";
 import { PORTFOLIO_ITEMS } from "@/lib/data";
 import { motion, AnimatePresence } from "framer-motion";
-
-const CATEGORIES = [
-  "All",
-  "Web Development",
-  "Mobile App Development",
-  "Brand Identity",
-  "Digital Marketing",
-  "System Automation",
-  "Motion & Interaction",
-];
+import { ArrowRight } from "lucide-react";
 
 export default function PortfolioPage() {
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  const filteredProjects = activeCategory === "All"
-    ? PORTFOLIO_ITEMS
-    : PORTFOLIO_ITEMS.filter(project => project.category === activeCategory);
 
   return (
     <>
       <Navbar />
       <main className="flex-1 pt-32 pb-24 min-h-screen">
         <div className="container px-6 max-w-7xl">
-          <div className="max-w-3xl mb-16 text-center mx-auto">
+          <div className="max-w-4xl mb-24 text-center mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <span className="px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-sm font-medium tracking-wide uppercase mb-6 inline-block">
-                Our Work
-              </span>
-              <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-6 leading-tight">
-                Selected <span className="text-gradient">Work.</span>
+              <div className="flex items-center justify-center gap-3 mb-6">
+                <span className="h-px w-8 bg-primary" />
+                <span className="text-primary font-bold uppercase tracking-[0.3em] text-xs">
+                  Our Business Impact
+                </span>
+                <span className="h-px w-8 bg-primary" />
+              </div>
+              <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-8 leading-tight">
+                Selected <span className="text-gradient">Case Studies.</span>
               </h1>
-              <p className="text-xl text-muted-foreground">
-                A curated selection of our finest work, showcasing our diverse capabilities across multiple industries.
+              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+                A strategic deep dive into how we transform business identities and digital infrastructures for measurable growth.
               </p>
             </motion.div>
           </div>
 
-          {/* Filter System */}
-          <div className="flex flex-wrap justify-center gap-3 mb-16">
-            {CATEGORIES.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 border ${
-                  activeCategory === category
-                    ? "bg-primary border-primary text-white shadow-[0_0_20px_rgba(124,77,255,0.4)]"
-                    : "bg-surface border-border text-muted-foreground hover:border-primary/50 hover:text-white"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-
           <motion.div 
             layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16 mb-32"
           >
             <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project) => (
+              {PORTFOLIO_ITEMS.map((project) => (
                 <motion.div
                   key={project.slug}
                   layout
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
                 >
                   <ProjectCard project={project} />
                 </motion.div>
@@ -86,20 +59,19 @@ export default function PortfolioPage() {
             </AnimatePresence>
           </motion.div>
 
-          {filteredProjects.length === 0 && (
-            <div className="text-center py-20 border border-dashed border-border rounded-3xl mb-20">
-              <p className="text-muted-foreground text-lg italic">
-                No projects found in this category yet. Stay tuned!
+          <div className="text-center rounded-[40px] bg-surface border border-border p-12 lg:p-24 relative overflow-hidden shadow-2xl">
+            <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
+            <div className="relative z-10 max-w-2xl mx-auto">
+              <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-8 leading-tight">Ready to improve your business's digital presence?</h2>
+              <p className="text-muted-foreground text-lg mb-10 leading-relaxed">
+                We work with ambitious businesses to build high-performance systems that drive real growth.
               </p>
-            </div>
-          )}
-
-          <div className="text-center rounded-[24px] bg-secondary p-12 lg:p-16 relative overflow-hidden">
-            <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" />
-            <div className="relative z-10">
-              <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6">Inspired? Let's talk.</h2>
-              <Button size="lg" className="h-14 px-10 text-lg shadow-[0_0_20px_rgba(124,77,255,0.4)]" asChild>
-                <Link href="/contact">Let's Talk</Link>
+              <Button size="lg" className="h-16 px-12 text-lg font-bold rounded-2xl shadow-[0_0_30px_rgba(124,77,255,0.3)] hover:scale-105 transition-all group" asChild>
+                <Link href="/contact">
+                  Schedule Your Growth Audit
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
               </Button>
             </div>
           </div>
