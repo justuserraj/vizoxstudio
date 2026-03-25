@@ -240,7 +240,7 @@ export default function Home() {
                       <h3 className="text-xl font-serif font-bold text-white mb-4">{service.title}</h3>
                       <p className="text-muted-foreground text-base mb-6">{service.description}</p>
                       
-                      <div className="mt-auto flex items-center text-primary text-sm font-bold uppercase tracking-widest gap-2">
+                      <div className="mt-auto flex items-center text-[#A78BFF] text-sm font-bold uppercase tracking-widest gap-2">
                         View Details
                       </div>
                     </div>
@@ -301,7 +301,7 @@ export default function Home() {
                       <h3 className="text-2xl font-serif font-bold text-white mb-4">{GROWTH_SYSTEM[expertiseIndex].title}</h3>
                       <p className="text-muted-foreground text-lg mb-8 leading-relaxed">{GROWTH_SYSTEM[expertiseIndex].description}</p>
                       
-                      <div className="mt-auto flex items-center text-primary text-sm font-bold uppercase tracking-widest gap-2">
+                      <div className="mt-auto flex items-center text-[#A78BFF] text-sm font-bold uppercase tracking-widest gap-2">
                         View Details
                       </div>
                     </div>
