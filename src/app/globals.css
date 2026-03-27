@@ -140,8 +140,8 @@
 }
 
 @keyframes border-glow {
-  0%, 100% { border-color: rgba(124, 77, 255, 0.2); }
-  50% { border-color: rgba(124, 77, 255, 0.6); }
+  0%, 100% { box-shadow: 0 0 8px rgba(124, 77, 255, 0.15); }
+  50% { box-shadow: 0 0 20px rgba(124, 77, 255, 0.4); }
 }
 
 @keyframes orb-float {

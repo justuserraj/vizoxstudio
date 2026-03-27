@@ -11,11 +11,13 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { PORTFOLIO_ITEMS } from "@/lib/data";
 import { cn } from "@/lib/utils";
-import { Card3D, GlowBorder } from "@/components/ui/3d-card";
-import { SmoothScroll } from "@/components/SmoothScroll";
 
+const SmoothScroll = dynamic(() => import("@/components/SmoothScroll").then((mod) => mod.SmoothScroll), { ssr: false });
+const Card3D = dynamic(() => import("@/components/ui/3d-card").then((mod) => mod.Card3D), { ssr: false });
+const GlowBorder = dynamic(() => import("@/components/ui/3d-card").then((mod) => mod.GlowBorder), { ssr: false });
 const PageScene = dynamic(() => import("@/components/three/PageScene").then((mod) => mod.PageScene), { ssr: false });
 const ProjectCard = dynamic(() => import("@/components/ProjectCard").then((mod) => mod.ProjectCard), { ssr: false });
+const VideoBackground = dynamic(() => import("@/components/three/VideoBackground").then((mod) => mod.VideoBackground), { ssr: false });
 
 const GROWTH_SYSTEM = [
   {
@@ -66,7 +68,7 @@ const fadeIn: Variants = {
 
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
 };
 
 export default function Home() {
@@ -114,8 +116,7 @@ export default function Home() {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-          <div className="absolute inset-0 gradient-bg opacity-40 z-0" />
-          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20 z-0 bg-center" />
+          <VideoBackground />
 
           <div className="container px-6 max-w-5xl relative z-10 text-center">
             <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="space-y-8">
@@ -125,7 +126,9 @@ export default function Home() {
               </motion.div>
 
               <motion.h1
-                variants={fadeIn}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
                 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold tracking-tight text-white leading-tight"
               >
                 Stop Losing Customers Because of{" "}
@@ -290,6 +293,7 @@ export default function Home() {
               <div className="absolute top-1/2 -left-2 -translate-y-1/2 z-20">
                 <Button
                   variant="ghost" size="icon" className="w-10 h-10 rounded-full glass"
+                  aria-label="Previous service"
                   onClick={() => handleManualAction(() => setExpertiseIndex((expertiseIndex - 1 + GROWTH_SYSTEM.length) % GROWTH_SYSTEM.length))}
                 >
                   <ChevronLeft className="w-6 h-6 text-white" />
@@ -298,6 +302,7 @@ export default function Home() {
               <div className="absolute top-1/2 -right-2 -translate-y-1/2 z-20">
                 <Button
                   variant="ghost" size="icon" className="w-10 h-10 rounded-full glass"
+                  aria-label="Next service"
                   onClick={() => handleManualAction(() => setExpertiseIndex((expertiseIndex + 1) % GROWTH_SYSTEM.length))}
                 >
                   <ChevronRight className="w-6 h-6 text-white" />
@@ -349,6 +354,7 @@ export default function Home() {
                     key={idx}
                     onClick={() => handleManualAction(() => setExpertiseIndex(idx))}
                     className="p-3 group"
+                    aria-label={`Go to service ${idx + 1}`}
                   >
                     <div className={cn(
                       "w-2 h-2 rounded-full transition-all duration-300 group-hover:bg-primary/50",
@@ -404,6 +410,7 @@ export default function Home() {
               <div className="absolute top-1/2 -left-2 -translate-y-1/2 z-20">
                 <Button
                   variant="ghost" size="icon" className="w-10 h-10 rounded-full glass"
+                  aria-label="Previous project"
                   onClick={() => handleManualAction(() => setWorkIndex((workIndex - 1 + featuredPortfolio.length) % featuredPortfolio.length))}
                 >
                   <ChevronLeft className="w-6 h-6 text-white" />
@@ -412,6 +419,7 @@ export default function Home() {
               <div className="absolute top-1/2 -right-2 -translate-y-1/2 z-20">
                 <Button
                   variant="ghost" size="icon" className="w-10 h-10 rounded-full glass"
+                  aria-label="Next project"
                   onClick={() => handleManualAction(() => setWorkIndex((workIndex + 1) % featuredPortfolio.length))}
                 >
                   <ChevronRight className="w-6 h-6 text-white" />
@@ -449,6 +457,7 @@ export default function Home() {
                     key={idx}
                     onClick={() => handleManualAction(() => setWorkIndex(idx))}
                     className="p-3 group"
+                    aria-label={`Go to project ${idx + 1}`}
                   >
                     <div className={cn(
                       "w-2 h-2 rounded-full transition-all duration-300 group-hover:bg-primary/50",
@@ -462,7 +471,7 @@ export default function Home() {
             {/* Visual Authority Section */}
             <div className="mt-32 pt-16 border-t border-border/30">
               <div className="text-center mb-16">
-                <span className="px-5 py-2 rounded-full glass text-primary text-xs font-bold tracking-[0.2em] uppercase mb-6 inline-block">
+                <span className="px-5 py-2 rounded-full glass text-white text-xs font-bold tracking-[0.2em] uppercase mb-6 inline-block">
                   Visual Authority
                 </span>
                 <h3 className="text-2xl md:text-5xl font-serif font-bold text-white mb-6">Strategic Brand Identities</h3>
@@ -559,6 +568,7 @@ export default function Home() {
               <div className="absolute top-1/2 -left-2 -translate-y-1/2 z-20">
                 <Button
                   variant="ghost" size="icon" className="w-10 h-10 rounded-full glass"
+                  aria-label="Previous testimonial"
                   onClick={() => handleManualAction(() => setTestimonialIndex((testimonialIndex - 1 + TESTIMONIALS.length) % TESTIMONIALS.length))}
                 >
                   <ChevronLeft className="w-6 h-6 text-white" />
@@ -567,6 +577,7 @@ export default function Home() {
               <div className="absolute top-1/2 -right-2 -translate-y-1/2 z-20">
                 <Button
                   variant="ghost" size="icon" className="w-10 h-10 rounded-full glass"
+                  aria-label="Next testimonial"
                   onClick={() => handleManualAction(() => setTestimonialIndex((testimonialIndex + 1) % TESTIMONIALS.length))}
                 >
                   <ChevronRight className="w-6 h-6 text-white" />
@@ -622,6 +633,7 @@ export default function Home() {
                     key={idx}
                     onClick={() => handleManualAction(() => setTestimonialIndex(idx))}
                     className="p-3 group"
+                    aria-label={`Go to testimonial ${idx + 1}`}
                   >
                     <div className={cn(
                       "w-2 h-2 rounded-full transition-all duration-300 group-hover:bg-primary/50",
